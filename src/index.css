@@ -37,14 +37,41 @@ All colors MUST be HSL.
     --input: 240 6% 90%;
     --ring: 262 83% 58%;
     
+    /* Advanced color system */
+    --gradient-primary: linear-gradient(135deg, hsl(262 83% 58%), hsl(225 100% 65%), hsl(300 100% 70%));
+    --gradient-secondary: linear-gradient(135deg, hsl(225 100% 65%), hsl(262 83% 58%));
+    --gradient-accent: linear-gradient(45deg, hsl(300 100% 70%), hsl(262 83% 58%));
+    --gradient-mesh: radial-gradient(circle at 20% 50%, hsl(262 83% 58% / 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 20%, hsl(225 100% 65% / 0.3) 0%, transparent 50%), radial-gradient(circle at 40% 80%, hsl(300 100% 70% / 0.2) 0%, transparent 50%);
+    
     /* Todo app specific tokens */
-    --todo-gradient: linear-gradient(135deg, hsl(262 83% 58%), hsl(225 100% 65%));
-    --todo-gradient-hover: linear-gradient(135deg, hsl(262 83% 62%), hsl(225 100% 70%));
     --todo-complete: 142 76% 36%;
     --todo-complete-bg: 142 76% 95%;
-    --shadow-elegant: 0 4px 12px -4px hsl(262 83% 58% / 0.15);
-    --shadow-card: 0 2px 8px -2px hsl(240 10% 15% / 0.08);
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --todo-complete-glow: 142 76% 50%;
+    
+    /* Advanced shadow system */
+    --shadow-sm: 0 1px 2px 0 hsl(240 10% 15% / 0.05);
+    --shadow: 0 1px 3px 0 hsl(240 10% 15% / 0.1), 0 1px 2px -1px hsl(240 10% 15% / 0.1);
+    --shadow-md: 0 4px 6px -1px hsl(240 10% 15% / 0.1), 0 2px 4px -2px hsl(240 10% 15% / 0.1);
+    --shadow-lg: 0 10px 15px -3px hsl(240 10% 15% / 0.1), 0 4px 6px -4px hsl(240 10% 15% / 0.1);
+    --shadow-xl: 0 20px 25px -5px hsl(240 10% 15% / 0.1), 0 8px 10px -6px hsl(240 10% 15% / 0.1);
+    --shadow-2xl: 0 25px 50px -12px hsl(240 10% 15% / 0.25);
+    --shadow-inner: inset 0 2px 4px 0 hsl(240 10% 15% / 0.05);
+    
+    /* Glow effects */
+    --glow-primary: 0 0 20px hsl(262 83% 58% / 0.4), 0 0 40px hsl(262 83% 58% / 0.2);
+    --glow-secondary: 0 0 20px hsl(225 100% 65% / 0.4), 0 0 40px hsl(225 100% 65% / 0.2);
+    --glow-success: 0 0 20px hsl(142 76% 36% / 0.4), 0 0 40px hsl(142 76% 36% / 0.2);
+    --glow-warm: 0 0 30px hsl(300 100% 70% / 0.3);
+    
+    /* Glass effects */
+    --glass-bg: hsl(0 0% 100% / 0.7);
+    --glass-border: hsl(0 0% 100% / 0.2);
+    --glass-shadow: 0 8px 32px 0 hsl(240 10% 15% / 0.15);
+    
+    /* Animation variables */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-elastic: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
     --radius: 0.5rem;
 
@@ -95,13 +122,35 @@ All colors MUST be HSL.
     --input: 240 4% 18%;
     --ring: 262 83% 58%;
     
-    /* Todo app dark mode specific tokens */
-    --todo-gradient: linear-gradient(135deg, hsl(262 83% 58%), hsl(225 100% 65%));
-    --todo-gradient-hover: linear-gradient(135deg, hsl(262 83% 62%), hsl(225 100% 70%));
+    
+    /* Dark mode advanced colors */
+    --gradient-primary: linear-gradient(135deg, hsl(262 83% 65%), hsl(225 100% 70%), hsl(300 100% 75%));
+    --gradient-secondary: linear-gradient(135deg, hsl(225 100% 70%), hsl(262 83% 65%));
+    --gradient-accent: linear-gradient(45deg, hsl(300 100% 75%), hsl(262 83% 65%));
+    --gradient-mesh: radial-gradient(circle at 20% 50%, hsl(262 83% 65% / 0.4) 0%, transparent 50%), radial-gradient(circle at 80% 20%, hsl(225 100% 70% / 0.4) 0%, transparent 50%), radial-gradient(circle at 40% 80%, hsl(300 100% 75% / 0.3) 0%, transparent 50%);
+    
     --todo-complete: 142 70% 45%;
     --todo-complete-bg: 142 70% 15%;
-    --shadow-elegant: 0 4px 12px -4px hsl(262 83% 58% / 0.25);
-    --shadow-card: 0 2px 8px -2px hsl(240 10% 4% / 0.25);
+    --todo-complete-glow: 142 70% 50%;
+    
+    /* Dark mode shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(240 10% 4% / 0.5);
+    --shadow: 0 1px 3px 0 hsl(240 10% 4% / 0.3), 0 1px 2px -1px hsl(240 10% 4% / 0.3);
+    --shadow-md: 0 4px 6px -1px hsl(240 10% 4% / 0.3), 0 2px 4px -2px hsl(240 10% 4% / 0.3);
+    --shadow-lg: 0 10px 15px -3px hsl(240 10% 4% / 0.4), 0 4px 6px -4px hsl(240 10% 4% / 0.4);
+    --shadow-xl: 0 20px 25px -5px hsl(240 10% 4% / 0.4), 0 8px 10px -6px hsl(240 10% 4% / 0.4);
+    --shadow-2xl: 0 25px 50px -12px hsl(240 10% 4% / 0.6);
+    
+    /* Dark mode glow effects */
+    --glow-primary: 0 0 20px hsl(262 83% 65% / 0.5), 0 0 40px hsl(262 83% 65% / 0.3);
+    --glow-secondary: 0 0 20px hsl(225 100% 70% / 0.5), 0 0 40px hsl(225 100% 70% / 0.3);
+    --glow-success: 0 0 20px hsl(142 70% 45% / 0.5), 0 0 40px hsl(142 70% 45% / 0.3);
+    --glow-warm: 0 0 30px hsl(300 100% 75% / 0.4);
+    
+    /* Dark glass effects */
+    --glass-bg: hsl(240 10% 12% / 0.7);
+    --glass-border: hsl(240 10% 95% / 0.1);
+    --glass-shadow: 0 8px 32px 0 hsl(240 10% 4% / 0.3);
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -120,5 +169,112 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    background-image: var(--gradient-mesh);
+    background-attachment: fixed;
+  }
+}
+
+@layer utilities {
+  /* Glass morphism utilities */
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+  }
+  
+  .glass-strong {
+    background: var(--glass-bg);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+  }
+  
+  /* Gradient utilities */
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+  
+  .gradient-secondary {
+    background: var(--gradient-secondary);
+  }
+  
+  .gradient-accent {
+    background: var(--gradient-accent);
+  }
+  
+  /* Glow utilities */
+  .glow-primary {
+    box-shadow: var(--glow-primary);
+  }
+  
+  .glow-secondary {
+    box-shadow: var(--glow-secondary);
+  }
+  
+  .glow-success {
+    box-shadow: var(--glow-success);
+  }
+  
+  .glow-warm {
+    box-shadow: var(--glow-warm);
+  }
+  
+  /* Advanced shadow utilities */
+  .shadow-premium {
+    box-shadow: var(--shadow-xl), var(--glow-primary);
+  }
+  
+  .shadow-elegant {
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .shadow-floating {
+    box-shadow: var(--shadow-2xl);
+  }
+  
+  /* Animation utilities */
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  
+  .transition-bounce {
+    transition: var(--transition-bounce);
+  }
+  
+  .transition-elastic {
+    transition: var(--transition-elastic);
+  }
+  
+  /* Hover effects */
+  .hover-lift {
+    transition: var(--transition-smooth);
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: var(--shadow-2xl), var(--glow-primary);
+  }
+  
+  .hover-glow:hover {
+    box-shadow: var(--glow-primary);
+  }
+  
+  .hover-pulse:hover {
+    animation: pulse 1.5s infinite;
+  }
+  
+  /* Text effects */
+  .text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .text-shadow {
+    text-shadow: 0 2px 4px hsl(240 10% 15% / 0.3);
   }
 }

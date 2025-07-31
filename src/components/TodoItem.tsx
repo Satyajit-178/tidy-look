@@ -30,35 +30,37 @@ export const TodoItem = ({ todo, onToggle, onDelete, onEdit }: TodoItemProps) =>
 
   return (
     <div className={cn(
-      "bg-card rounded-xl shadow-card border transition-all duration-300 hover:shadow-lg group",
-      todo.completed && "opacity-75"
+      "glass rounded-2xl transition-all duration-500 hover-lift group border-2",
+      todo.completed 
+        ? "opacity-80 border-todo-complete/30 shadow-glow-success" 
+        : "border-white/20 hover:border-primary/30"
     )}>
-      <div className="p-4">
-        <div className="flex items-center gap-3">
+      <div className="p-5">
+        <div className="flex items-center gap-4">
           <Button
             variant="ghost"
             size="icon"
             onClick={() => onToggle(todo.id)}
             className={cn(
-              "shrink-0 transition-all duration-300",
+              "shrink-0 transition-all duration-500 hover:scale-110",
               todo.completed 
-                ? "text-todo-complete hover:text-todo-complete/80" 
-                : "text-muted-foreground hover:text-primary"
+                ? "text-todo-complete hover:text-todo-complete shadow-glow-success" 
+                : "text-muted-foreground hover:text-primary hover:bg-primary/10"
             )}
           >
             {todo.completed ? (
-              <CheckCircle2 className="w-5 h-5" />
+              <CheckCircle2 className="w-6 h-6 animate-bounce-in" />
             ) : (
-              <Circle className="w-5 h-5" />
+              <Circle className="w-6 h-6 group-hover:scale-110 transition-transform" />
             )}
           </Button>
 
           {isEditing ? (
-            <div className="flex-1 flex items-center gap-2">
+            <div className="flex-1 flex items-center gap-3">
               <Input
                 value={editText}
                 onChange={(e) => setEditText(e.target.value)}
-                className="flex-1"
+                className="flex-1 bg-white/50 dark:bg-black/20 border-white/30 focus-visible:ring-primary/50"
                 onKeyDown={(e) => {
                   if (e.key === "Enter") handleSave();
                   if (e.key === "Escape") handleCancel();
@@ -66,18 +68,18 @@ export const TodoItem = ({ todo, onToggle, onDelete, onEdit }: TodoItemProps) =>
                 autoFocus
               />
               <Button
-                variant="ghost"
+                variant="glass"
                 size="icon"
                 onClick={handleSave}
-                className="text-todo-complete hover:text-todo-complete/80"
+                className="text-todo-complete hover:text-todo-complete hover:shadow-glow-success"
               >
                 <Save className="w-4 h-4" />
               </Button>
               <Button
-                variant="ghost"
+                variant="glass"
                 size="icon"
                 onClick={handleCancel}
-                className="text-muted-foreground hover:text-destructive"
+                className="text-muted-foreground hover:text-destructive hover:bg-destructive/10"
               >
                 <X className="w-4 h-4" />
               </Button>
@@ -86,33 +88,38 @@ export const TodoItem = ({ todo, onToggle, onDelete, onEdit }: TodoItemProps) =>
             <>
               <div 
                 className={cn(
-                  "flex-1 transition-all duration-300 cursor-pointer",
+                  "flex-1 transition-all duration-500 cursor-pointer px-2",
                   todo.completed 
-                    ? "line-through text-muted-foreground" 
-                    : "text-foreground"
+                    ? "line-through text-muted-foreground opacity-75" 
+                    : "text-foreground hover:text-primary"
                 )}
                 onClick={() => onToggle(todo.id)}
               >
-                <p className="text-base">{todo.text}</p>
-                <p className="text-xs text-muted-foreground mt-1">
-                  {todo.createdAt.toLocaleDateString()}
+                <p className="text-lg font-medium mb-1">{todo.text}</p>
+                <p className="text-sm text-muted-foreground flex items-center gap-2">
+                  <span className="w-1 h-1 rounded-full bg-primary/60"></span>
+                  {todo.createdAt.toLocaleDateString('en-US', { 
+                    weekday: 'short', 
+                    month: 'short', 
+                    day: 'numeric' 
+                  })}
                 </p>
               </div>
 
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all duration-300">
                 <Button
-                  variant="ghost"
+                  variant="glass"
                   size="icon"
                   onClick={() => setIsEditing(true)}
-                  className="text-muted-foreground hover:text-primary"
+                  className="text-muted-foreground hover:text-primary hover:bg-primary/10 hover:scale-110 transition-all duration-300"
                 >
                   <Edit3 className="w-4 h-4" />
                 </Button>
                 <Button
-                  variant="ghost"
+                  variant="glass"
                   size="icon"
                   onClick={() => onDelete(todo.id)}
-                  className="text-muted-foreground hover:text-destructive"
+                  className="text-muted-foreground hover:text-destructive hover:bg-destructive/10 hover:scale-110 transition-all duration-300"
                 >
                   <Trash2 className="w-4 h-4" />
                 </Button>

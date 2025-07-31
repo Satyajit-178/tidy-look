@@ -57,78 +57,85 @@ export const TodoApp = () => {
   const activeCount = todos.filter(todo => !todo.completed).length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-accent/30 to-background p-4">
-      <div className="max-w-2xl mx-auto pt-8">
+    <div className="min-h-screen bg-gradient-to-br from-background via-primary/5 to-accent/20 p-4 relative overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-primary rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float"></div>
+        <div className="absolute top-40 right-10 w-96 h-96 bg-gradient-secondary rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float" style={{animationDelay: '2s'}}></div>
+        <div className="absolute bottom-20 left-1/2 w-80 h-80 bg-gradient-accent rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float" style={{animationDelay: '4s'}}></div>
+      </div>
+      
+      <div className="max-w-2xl mx-auto pt-8 relative z-10">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold bg-todo-gradient bg-clip-text text-transparent mb-2">
+        <div className="text-center mb-8 animate-fade-in">
+          <h1 className="text-5xl font-bold text-gradient mb-4 text-shadow animate-glow-pulse">
             Todo App
           </h1>
-          <p className="text-muted-foreground">
-            Stay organized and get things done
+          <p className="text-muted-foreground text-lg">
+            Stay organized and get things done ✨
           </p>
         </div>
 
         {/* Add Todo Form */}
-        <div className="bg-card rounded-xl shadow-card border p-6 mb-6">
-          <div className="flex gap-3">
+        <div className="glass rounded-2xl p-6 mb-6 hover-lift animate-slide-up border-2 border-white/20">
+          <div className="flex gap-4">
             <Input
               value={newTodo}
               onChange={(e) => setNewTodo(e.target.value)}
               placeholder="Add a new todo..."
-              className="flex-1 h-12 text-base border-border/50 focus-visible:ring-primary/50"
+              className="flex-1 h-14 text-base bg-white/50 dark:bg-black/20 border-white/30 focus-visible:ring-primary/50 focus-visible:border-primary/50 backdrop-blur-sm transition-all duration-300"
               onKeyDown={(e) => e.key === "Enter" && addTodo()}
             />
             <Button 
               onClick={addTodo}
               variant="gradient"
               size="lg"
-              className="px-6"
+              className="px-8 h-14 shadow-glow-primary"
             >
-              <Plus className="w-5 h-5" />
-              Add
+              <Plus className="w-6 h-6" />
+              Add Task
             </Button>
           </div>
         </div>
 
         {/* Stats and Filters */}
-        <div className="bg-card rounded-xl shadow-card border p-4 mb-6">
+        <div className="glass rounded-2xl p-5 mb-6 animate-slide-up border-2 border-white/20" style={{animationDelay: '0.1s'}}>
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div className="flex gap-6 text-sm text-muted-foreground">
-              <span className="flex items-center gap-2">
-                <Circle className="w-4 h-4" />
+            <div className="flex gap-8 text-sm">
+              <span className="flex items-center gap-2 text-muted-foreground font-medium">
+                <div className="w-3 h-3 rounded-full bg-gradient-secondary animate-pulse"></div>
                 {activeCount} active
               </span>
-              <span className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-todo-complete" />
+              <span className="flex items-center gap-2 text-todo-complete font-medium">
+                <div className="w-3 h-3 rounded-full bg-todo-complete animate-pulse"></div>
                 {completedCount} completed
               </span>
             </div>
             
             <div className="flex gap-2">
               <Button
-                variant={filter === "all" ? "gradient" : "ghost"}
+                variant={filter === "all" ? "neon" : "glass"}
                 size="sm"
                 onClick={() => setFilter("all")}
-                className="text-xs"
+                className="text-xs font-medium px-4"
               >
                 <List className="w-3 h-3" />
                 All
               </Button>
               <Button
-                variant={filter === "active" ? "gradient" : "ghost"}
+                variant={filter === "active" ? "gradient" : "glass"}
                 size="sm"
                 onClick={() => setFilter("active")}
-                className="text-xs"
+                className="text-xs font-medium px-4"
               >
                 <Circle className="w-3 h-3" />
                 Active
               </Button>
               <Button
-                variant={filter === "completed" ? "complete" : "ghost"}
+                variant={filter === "completed" ? "complete" : "glass"}
                 size="sm"
                 onClick={() => setFilter("completed")}
-                className="text-xs"
+                className="text-xs font-medium px-4"
               >
                 <CheckCircle2 className="w-3 h-3" />
                 Done
@@ -138,33 +145,43 @@ export const TodoApp = () => {
         </div>
 
         {/* Todo List */}
-        <div className="space-y-3">
+        <div className="space-y-4">
           {filteredTodos.length === 0 ? (
-            <div className="bg-card rounded-xl shadow-card border p-8 text-center">
-              <div className="text-muted-foreground">
-                {filter === "all" && "No todos yet. Add one above!"}
-                {filter === "active" && "No active todos. Great job!"}
-                {filter === "completed" && "No completed todos yet."}
+            <div className="glass rounded-2xl p-12 text-center animate-scale-in border-2 border-white/20">
+              <div className="text-muted-foreground text-lg">
+                {filter === "all" && "✨ No todos yet. Add your first task above!"}
+                {filter === "active" && "🎉 No active todos. You're all caught up!"}
+                {filter === "completed" && "📝 No completed todos yet. Start checking things off!"}
               </div>
             </div>
           ) : (
-            filteredTodos.map((todo) => (
-              <TodoItem
-                key={todo.id}
-                todo={todo}
-                onToggle={toggleTodo}
-                onDelete={deleteTodo}
-                onEdit={editTodo}
-              />
+            filteredTodos.map((todo, index) => (
+              <div 
+                key={todo.id} 
+                className="animate-slide-up"
+                style={{animationDelay: `${index * 0.1}s`}}
+              >
+                <TodoItem
+                  todo={todo}
+                  onToggle={toggleTodo}
+                  onDelete={deleteTodo}
+                  onEdit={editTodo}
+                />
+              </div>
             ))
           )}
         </div>
 
         {/* Footer */}
         {todos.length > 0 && (
-          <div className="text-center mt-8 text-sm text-muted-foreground">
+          <div className="text-center mt-8 animate-fade-in">
             {completedCount > 0 && (
-              <p>🎉 You've completed {completedCount} {completedCount === 1 ? 'task' : 'tasks'}!</p>
+              <div className="inline-flex items-center gap-2 px-6 py-3 glass rounded-full border-2 border-white/20">
+                <span className="text-2xl">🎉</span>
+                <p className="text-foreground font-medium">
+                  You've completed {completedCount} {completedCount === 1 ? 'task' : 'tasks'}!
+                </p>
+              </div>
             )}
           </div>
         )}
